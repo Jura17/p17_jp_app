@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:p17_jp_app/main_screen.dart';
 import 'package:p17_jp_app/start_screen.dart';
 
 void main() {
@@ -11,7 +12,8 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: StartScreen(),
+      debugShowCheckedModeBanner: false,
+      home: MainScreen(),
     );
   }
 }

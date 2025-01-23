@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:p17_jp_app/widgets/details_info_card.dart';
 
 class RecommendationCard extends StatelessWidget {
   final String imageURL;
@@ -22,6 +23,7 @@ class RecommendationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => showModalBottomSheet(
+          isScrollControlled: true,
           context: context,
           builder: (BuildContext context) {
             return DetailsModalBottomSheet(
@@ -71,7 +73,7 @@ class RecommendationCard extends StatelessWidget {
   }
 }
 
-class DetailsModalBottomSheet extends StatelessWidget {
+class DetailsModalBottomSheet extends StatefulWidget {
   final String dishTitle;
   final String imageURL;
   final double price;
@@ -88,172 +90,104 @@ class DetailsModalBottomSheet extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-        width: double.infinity,
-        color: Color.fromRGBO(44, 44, 44, 1),
-        child: Column(
-          children: [
-            Stack(
-              // alignment: Alignment.topCenter,
-              children: [
-                Positioned(child: Image(image: AssetImage(imageURL))),
-                DetailsInfoCard(
-                    dishTitle: dishTitle,
-                    imageURL: imageURL,
-                    price: price,
-                    noOflikes: noOflikes,
-                    rating: rating)
-              ],
-            ),
-            Text(
-              "Other things",
-              style: TextStyle(color: Colors.white),
-            )
-          ],
-        ));
-  }
+  State<DetailsModalBottomSheet> createState() =>
+      _DetailsModalBottomSheetState();
 }
 
-class DetailsInfoCard extends StatelessWidget {
-  final String dishTitle;
-  final String imageURL;
-  final double price;
-  final int noOflikes;
-  final double rating;
+enum OrderSize {
+  small,
+  medium,
+  large,
+}
 
-  const DetailsInfoCard(
-      {required this.dishTitle,
-      required this.imageURL,
-      required this.price,
-      required this.noOflikes,
-      required this.rating,
-      super.key});
+class _DetailsModalBottomSheetState extends State<DetailsModalBottomSheet> {
+  Set<OrderSize> _selected = {OrderSize.small};
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 350,
-      decoration: BoxDecoration(
-        color: Colors.black87,
-        border: Border.all(color: Colors.white),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Row(
-              spacing: 8,
+    return FractionallySizedBox(
+      heightFactor: 0.88,
+      child: Container(
+        color: Color.fromRGBO(44, 44, 44, 1),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SingleChildScrollView(
+            child: Column(
               children: [
-                Expanded(
-                  child: Text(""),
-                ),
-                Icon(
-                  Icons.favorite_border,
-                  color: Colors.grey,
-                ),
-                Text(
-                  noOflikes.toString(),
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey,
+                SizedBox(
+                  height: 200,
+                  child: OverflowBox(
+                    minHeight: 400,
+                    maxHeight: 400,
+                    child: Image(image: AssetImage(widget.imageURL)),
                   ),
                 ),
-              ],
-            ),
-            Text(
-              dishTitle,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25),
-            ),
-            Text(
-              "Lorem ipsum dolor sit amet consectetur. Non feugiat imperdiet a vel sit at amet. Mi accumsan feugiat magna aliquam feugiat ac et. Pulvinar hendrerit id arcu at sed etiam semper mi hendrerit. Id aliquet quis quam.",
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white, fontSize: 16),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              "\$$price",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18),
-            ),
-            Divider(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
+                DetailsInfoCard(
+                    dishTitle: widget.dishTitle,
+                    imageURL: widget.imageURL,
+                    price: widget.price,
+                    noOflikes: widget.noOflikes,
+                    rating: widget.rating),
+                SizedBox(
+                  height: 100,
+                ),
+                Row(
                   children: [
-                    Text("Ingredients",
-                        style: TextStyle(color: Colors.white, fontSize: 16)),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.trip_origin,
-                          color: Colors.white,
-                        ),
-                        Icon(
-                          Icons.trip_origin,
-                          color: Colors.white,
-                        ),
-                        Icon(
-                          Icons.trip_origin,
-                          color: Colors.white,
-                        ),
-                        Icon(
-                          Icons.trip_origin,
-                          color: Colors.white,
-                        ),
+                    SegmentedButton<OrderSize>(
+                      // style: ButtonStyle(
+                      //     backgroundColor: ),
+                      emptySelectionAllowed: false,
+                      showSelectedIcon: false,
+                      multiSelectionEnabled: false,
+                      segments: <ButtonSegment<OrderSize>>[
+                        ButtonSegment<OrderSize>(
+                            value: OrderSize.small, label: Text("Small")),
+                        ButtonSegment<OrderSize>(
+                            value: OrderSize.medium, label: Text("Medium")),
+                        ButtonSegment<OrderSize>(
+                            value: OrderSize.large, label: Text("Large")),
                       ],
-                    )
+                      selected: _selected,
+                      onSelectionChanged: updateSelected,
+                    ),
                   ],
                 ),
-                Column(
-                  children: [
-                    Text("Reviews",
-                        style: TextStyle(color: Colors.white, fontSize: 16)),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.star,
-                          color: Colors.white,
-                        ),
-                        Icon(
-                          Icons.star,
-                          color: Colors.white,
-                        ),
-                        Icon(
-                          Icons.star,
-                          color: Colors.white,
-                        ),
-                        Icon(
-                          Icons.star,
-                          color: Colors.white,
-                        ),
-                        Icon(
-                          Icons.star_border_outlined,
-                          color: Colors.white,
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Text(rating.toString(),
-                            style: TextStyle(color: Colors.white, fontSize: 16))
-                      ],
-                    )
-                  ],
-                )
+                SizedBox(
+                  height: 30,
+                ),
+                DetailsViewOrderNowButton()
               ],
-            )
-          ],
+            ),
+          ),
         ),
+      ),
+    );
+  }
+
+  void updateSelected(Set<OrderSize> newSelection) {
+    setState(() {
+      _selected = newSelection;
+    });
+  }
+}
+
+class DetailsViewOrderNowButton extends StatelessWidget {
+  const DetailsViewOrderNowButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return FilledButton(
+      style: FilledButton.styleFrom(
+          minimumSize: Size(double.infinity, 50),
+          backgroundColor: Colors.pink,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+      onPressed: () {},
+      child: Padding(
+        padding: const EdgeInsets.only(left: 32.0, right: 32.0),
+        child: Text("Order Now"),
       ),
     );
   }

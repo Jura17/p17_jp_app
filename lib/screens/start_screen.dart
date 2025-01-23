@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:p17_jp_app/screens/main_screen.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen({super.key});
@@ -59,7 +60,10 @@ class StartScreen extends StatelessWidget {
                               backgroundColor: Colors.pink,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10))),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const MainScreen()));
+                          },
                           child: Padding(
                             padding:
                                 const EdgeInsets.only(left: 32.0, right: 32.0),

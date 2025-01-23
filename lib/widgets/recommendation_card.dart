@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:p17_jp_app/widgets/details_info_card.dart';
+import 'package:p17_jp_app/widgets/details_view_order_now_button.dart';
+import 'package:p17_jp_app/widgets/order_amount_button.dart';
+import 'package:p17_jp_app/widgets/order_size_segment_button.dart';
 
 class RecommendationCard extends StatelessWidget {
   final String imageURL;
@@ -33,39 +36,72 @@ class RecommendationCard extends StatelessWidget {
                 noOflikes: noOflikes,
                 rating: rating);
           }),
-      child: Card(
+      child: Container(
+        width: 220,
+        height: 300,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment(0, 1),
+              colors: <Color>[
+                Color(0x33ffffff),
+                Color(0x99908cf5),
+                Color(0xff8c5bea),
+              ]),
+          borderRadius: BorderRadius.circular(30),
+          border: Border.all(color: Colors.white),
+        ),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            width: 200,
-            height: 300,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: Colors.white),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image(image: AssetImage(imageURL)),
-                Text(dishTitle),
-                Text(dishDescription),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("\$$price"),
-                    Row(
-                      children: [
-                        Icon(Icons.favorite_border),
-                        Text(
-                          noOflikes.toString(),
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ],
-                )
-              ],
-            ),
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image(image: AssetImage(imageURL)),
+              Text(
+                dishTitle,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15),
+              ),
+              Text(
+                dishDescription,
+                style: TextStyle(
+                    color: Colors.grey[400],
+                    fontWeight: FontWeight.w400,
+                    fontSize: 15),
+              ),
+              Spacer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "\$$price",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15),
+                  ),
+                  Row(
+                    spacing: 5,
+                    children: [
+                      Icon(
+                        Icons.favorite_border,
+                        color: Colors.grey[400],
+                      ),
+                      Text(
+                        noOflikes.toString(),
+                        style: TextStyle(
+                            color: Colors.grey[400],
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15),
+                      ),
+                    ],
+                  ),
+                ],
+              )
+            ],
           ),
         ),
       ),
@@ -94,15 +130,7 @@ class DetailsModalBottomSheet extends StatefulWidget {
       _DetailsModalBottomSheetState();
 }
 
-enum OrderSize {
-  small,
-  medium,
-  large,
-}
-
 class _DetailsModalBottomSheetState extends State<DetailsModalBottomSheet> {
-  Set<OrderSize> _selected = {OrderSize.small};
-
   @override
   Widget build(BuildContext context) {
     return FractionallySizedBox(
@@ -133,23 +161,9 @@ class _DetailsModalBottomSheetState extends State<DetailsModalBottomSheet> {
                 ),
                 Row(
                   children: [
-                    SegmentedButton<OrderSize>(
-                      // style: ButtonStyle(
-                      //     backgroundColor: ),
-                      emptySelectionAllowed: false,
-                      showSelectedIcon: false,
-                      multiSelectionEnabled: false,
-                      segments: <ButtonSegment<OrderSize>>[
-                        ButtonSegment<OrderSize>(
-                            value: OrderSize.small, label: Text("Small")),
-                        ButtonSegment<OrderSize>(
-                            value: OrderSize.medium, label: Text("Medium")),
-                        ButtonSegment<OrderSize>(
-                            value: OrderSize.large, label: Text("Large")),
-                      ],
-                      selected: _selected,
-                      onSelectionChanged: updateSelected,
-                    ),
+                    OrderSizeSegmentButton(),
+                    Spacer(),
+                    OrderAmountButton()
                   ],
                 ),
                 SizedBox(
@@ -160,34 +174,6 @@ class _DetailsModalBottomSheetState extends State<DetailsModalBottomSheet> {
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  void updateSelected(Set<OrderSize> newSelection) {
-    setState(() {
-      _selected = newSelection;
-    });
-  }
-}
-
-class DetailsViewOrderNowButton extends StatelessWidget {
-  const DetailsViewOrderNowButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return FilledButton(
-      style: FilledButton.styleFrom(
-          minimumSize: Size(double.infinity, 50),
-          backgroundColor: Colors.pink,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
-      onPressed: () {},
-      child: Padding(
-        padding: const EdgeInsets.only(left: 32.0, right: 32.0),
-        child: Text("Order Now"),
       ),
     );
   }

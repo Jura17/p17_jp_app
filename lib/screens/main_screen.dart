@@ -59,7 +59,7 @@ class MainScreen extends StatelessWidget {
                       spacing: 20,
                       children: [
                         RecommendationCard(
-                          imageURL: "assets/graphics/cupkake_cat.png",
+                          imageURL: "assets/graphics/cupcake_cat.png",
                           dishTitle: "Mogli's Cup",
                           dishDescription: "Strawberry ice cream",
                           rating: 4.0,

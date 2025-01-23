@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:p17_jp_app/widgets/rating_star.dart';
 
 class DetailsInfoCard extends StatelessWidget {
   final String dishTitle;
@@ -32,9 +33,7 @@ class DetailsInfoCard extends StatelessWidget {
             Row(
               spacing: 8,
               children: [
-                Expanded(
-                  child: Text(""),
-                ),
+                Spacer(),
                 Icon(
                   Icons.favorite_border,
                   color: Colors.grey,
@@ -106,26 +105,11 @@ class DetailsInfoCard extends StatelessWidget {
                         style: TextStyle(color: Colors.white, fontSize: 16)),
                     Row(
                       children: [
-                        Icon(
-                          Icons.star,
-                          color: Colors.white,
-                        ),
-                        Icon(
-                          Icons.star,
-                          color: Colors.white,
-                        ),
-                        Icon(
-                          Icons.star,
-                          color: Colors.white,
-                        ),
-                        Icon(
-                          Icons.star,
-                          color: Colors.white,
-                        ),
-                        Icon(
-                          Icons.star_border_outlined,
-                          color: Colors.white,
-                        ),
+                        RatingStar(),
+                        RatingStar(),
+                        RatingStar(),
+                        RatingStar(),
+                        RatingStar(),
                         SizedBox(
                           width: 20,
                         ),

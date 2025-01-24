@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:p17_jp_app/widgets/add_to_order_button.dart';
 
 class SelectedSnackCard extends StatelessWidget {
@@ -51,12 +52,22 @@ class SelectedSnackCard extends StatelessWidget {
                           fontSize: 15),
                     ),
                     SizedBox(height: 3),
-                    Text(
-                      "\$$price",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20),
+                    Row(
+                      spacing: 5,
+                      children: [
+                        SvgPicture.asset(
+                          "assets/icons/currency.svg",
+                          height: 15,
+                          width: 15,
+                        ),
+                        Text(
+                          "$price",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
+                        ),
+                      ],
                     ),
                     SizedBox(height: 25),
                     AddToOrderButton()

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class TopNavBar extends StatelessWidget {
   const TopNavBar({
@@ -31,9 +32,10 @@ class TopNavBar extends StatelessWidget {
                     child: Row(
                       spacing: 5,
                       children: [
-                        Icon(
-                          Icons.fastfood,
-                          color: Colors.white,
+                        SvgPicture.asset(
+                          "assets/icons/lunch.svg",
+                          height: 15,
+                          width: 15,
                         ),
                         Text(
                           "All categories",

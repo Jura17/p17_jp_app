@@ -20,8 +20,17 @@ class _OrderAmountButtonState extends State<OrderAmountButton> {
               if (amount > 0) amount--;
             });
           },
-          label: Icon(Icons.remove),
-          style: ElevatedButton.styleFrom(shape: CircleBorder()),
+          label: Icon(
+            size: 20,
+            Icons.remove,
+            color: Colors.white,
+          ),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 53, 53, 53),
+            shape: CircleBorder(
+              side: BorderSide(color: const Color.fromARGB(116, 255, 255, 255)),
+            ),
+          ),
         ),
         Text(
           amount.toString(),
@@ -34,8 +43,17 @@ class _OrderAmountButtonState extends State<OrderAmountButton> {
               if (amount < 20) amount++;
             });
           },
-          label: Icon(Icons.add),
-          style: ElevatedButton.styleFrom(shape: CircleBorder()),
+          label: Icon(
+            size: 20,
+            Icons.add,
+            color: Colors.white,
+          ),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 53, 53, 53),
+            shape: CircleBorder(
+              side: BorderSide(color: const Color.fromARGB(116, 255, 255, 255)),
+            ),
+          ),
         ),
       ],
     );

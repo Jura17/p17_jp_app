@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:p17_jp_app/widgets/start_screen_card.dart';
 
 class StartScreen extends StatelessWidget {
@@ -36,7 +37,7 @@ class StartScreen extends StatelessWidget {
                 width: 430,
                 fit: BoxFit.fill,
               )),
-          Positioned(bottom: 50, child: StartScreenCard())
+          Positioned(bottom: 50, child: StartScreenCard()),
         ],
       ),
     );

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:p17_jp_app/widgets/add_to_order_button.dart';
 
-class SelectedSnack extends StatelessWidget {
+class SelectedSnackCard extends StatelessWidget {
   final String dishTitle;
   final String dishDescription;
   final String imageURL;
   final double price;
   final double rating;
 
-  const SelectedSnack({
+  const SelectedSnackCard({
     required this.dishTitle,
     required this.dishDescription,
     required this.imageURL,
@@ -19,17 +20,20 @@ class SelectedSnack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 350,
       child: Stack(
         children: [
-          Image(image: AssetImage("assets/details/cut_card.png")),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
+          Image(
+            image: AssetImage("assets/details/cut_card.png"),
+            width: double.infinity,
+            fit: BoxFit.fill,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
                   spacing: 8,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -42,36 +46,30 @@ class SelectedSnack extends StatelessWidget {
                     ),
                     Text(
                       dishDescription,
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(
+                          color: const Color.fromARGB(255, 238, 238, 238),
+                          fontSize: 15),
                     ),
+                    SizedBox(height: 3),
                     Text(
                       "\$$price",
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 15),
+                          fontSize: 20),
                     ),
-                    SizedBox(
-                      height: 25,
-                    ),
-                    FilledButton(
-                      style: FilledButton.styleFrom(
-                          backgroundColor: Colors.pink,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10))),
-                      onPressed: () {},
-                      child: Text("Add to order"),
-                    )
+                    SizedBox(height: 25),
+                    AddToOrderButton()
                   ],
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  spacing: 4,
                   children: [
-                    Icon(
-                      Icons.star,
-                      color: Colors.pink,
+                    Image.asset(
+                      "assets/graphics/star.png",
+                      width: 17,
+                      fit: BoxFit.fill,
                     ),
                     Text(
                       rating.toString(),
@@ -79,14 +77,14 @@ class SelectedSnack extends StatelessWidget {
                           color: Colors.white, fontWeight: FontWeight.bold),
                     )
                   ],
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
           Positioned(
-            width: 200,
-            top: 50,
-            left: 150,
+            width: 225,
+            top: 55,
+            left: 175,
             child: Image(
               image: AssetImage(imageURL),
             ),

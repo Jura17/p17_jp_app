@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:p17_jp_app/widgets/recommendation_card.dart';
-import 'package:p17_jp_app/widgets/selected_snack.dart';
+import 'package:p17_jp_app/widgets/selected_snack_card.dart';
 import 'package:p17_jp_app/widgets/top_nav_bar.dart';
 
 class MainScreen extends StatelessWidget {
@@ -36,15 +36,13 @@ class MainScreen extends StatelessWidget {
                         fontSize: 25),
                   ),
                   TopNavBar(),
-                  Center(
-                    child: SelectedSnack(
-                      dishTitle: "Angi's Yummy Burger",
-                      dishDescription:
-                          "Delish vegan burger\nthat tastes like heaven",
-                      imageURL: "assets/graphics/burger.png",
-                      price: 13.99,
-                      rating: 4.8,
-                    ),
+                  SelectedSnackCard(
+                    dishTitle: "Angi's Yummy Burger",
+                    dishDescription:
+                        "Delish vegan burger\nthat tastes like heaven",
+                    imageURL: "assets/graphics/burger.png",
+                    price: 13.99,
+                    rating: 4.8,
                   ),
                   Text(
                     "We Recommend",

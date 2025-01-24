@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:p17_jp_app/screens/main_screen.dart';
 
-class OrderNowButton extends StatelessWidget {
-  const OrderNowButton({super.key});
+class AddToOrderButton extends StatelessWidget {
+  const AddToOrderButton({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => const MainScreen()));
-      },
+      onTap: () {},
       child: Container(
-        width: 200,
-        height: 50,
+        width: 145,
+        height: 55,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -30,9 +28,9 @@ class OrderNowButton extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(15),
           gradient: RadialGradient(
-            colors: [Color(0xFFF69eA3), Color(0xFFE970C4)],
-            center: Alignment(0.6, -0.5),
-            radius: 2.2,
+            colors: [Color(0xFF908CF5), Color(0xFFBB8DE1)],
+            center: Alignment(0.9, 0.5),
+            radius: 1.5,
           ),
         ),
         child: ElevatedButton(
@@ -42,14 +40,14 @@ class OrderNowButton extends StatelessWidget {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           ),
-          onPressed: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const MainScreen()));
-          },
+          onPressed: () {},
           child: Text(
-            "Order Now",
+            "Add to order",
             style: TextStyle(
-                color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+              color: Colors.white,
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),

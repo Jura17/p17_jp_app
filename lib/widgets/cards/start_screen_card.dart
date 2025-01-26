@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:p17_jp_app/widgets/order_now_button.dart';
+import 'package:p17_jp_app/widgets/buttons/order_now_button.dart';
 
 class StartScreenCard extends StatelessWidget {
   const StartScreenCard({
@@ -19,16 +19,18 @@ class StartScreenCard extends StatelessWidget {
             border: Border.all(color: Colors.white, width: 0.1),
           ),
           width: 360,
-          height: 200,
+          height: 220,
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
+              spacing: 5,
               children: [
                 Text(
                   "Feeling Snackish Today?",
                   style: TextStyle(
                       color: Colors.white,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w900,
+                      letterSpacing: -1.0,
                       fontSize: 25),
                 ),
                 Text(
@@ -37,9 +39,12 @@ class StartScreenCard extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 25,
                 ),
-                OrderNowButton(),
+                OrderNowButton(
+                  buttonWidth: 200,
+                  buttonText: "Order now",
+                ),
               ],
             ),
           ),

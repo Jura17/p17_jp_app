@@ -52,78 +52,52 @@ class TopNavBar extends StatelessWidget {
               ),
             ),
           ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(minWidth: 90),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.white),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      "Salty",
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(minWidth: 90),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(64, 255, 255, 255),
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.white, width: 1),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      "Sweet",
-                      style: TextStyle(color: Colors.white),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(minWidth: 90),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(64, 255, 255, 255),
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.white, width: 1),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      "Drinks",
-                      style: TextStyle(color: Colors.white),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
+          TopNavCategory(isSelected: true, title: "Salty"),
+          TopNavCategory(isSelected: false, title: "Sweet"),
+          TopNavCategory(isSelected: false, title: "Drinks")
         ],
+      ),
+    );
+  }
+}
+
+class TopNavCategory extends StatelessWidget {
+  final bool isSelected;
+  final String title;
+
+  const TopNavCategory({
+    required this.isSelected,
+    required this.title,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(minWidth: 90),
+          child: Container(
+            decoration: BoxDecoration(
+              color: isSelected
+                  ? Colors.white
+                  : const Color.fromARGB(64, 255, 255, 255),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: Colors.white),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                title,
+                textAlign: TextAlign.center,
+                style:
+                    TextStyle(color: isSelected ? Colors.black : Colors.white),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

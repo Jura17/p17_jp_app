@@ -2,11 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:p17_jp_app/widgets/details_info_card.dart';
 import 'package:p17_jp_app/widgets/details_modal_bottom_sheet.dart';
-import 'package:p17_jp_app/widgets/details_view_order_now_button.dart';
-import 'package:p17_jp_app/widgets/order_amount_button.dart';
-import 'package:p17_jp_app/widgets/order_size_segment_button.dart';
 
 class RecommendationCard extends StatelessWidget {
   final String imageURL;

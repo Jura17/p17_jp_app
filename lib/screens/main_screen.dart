@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:p17_jp_app/widgets/recommendation_card.dart';
-import 'package:p17_jp_app/widgets/selected_snack_card.dart';
+import 'package:p17_jp_app/widgets/cards/recommendation_card.dart';
+import 'package:p17_jp_app/widgets/cards/selected_snack_card.dart';
 import 'package:p17_jp_app/widgets/top_nav_bar.dart';
 
 class MainScreen extends StatelessWidget {
@@ -68,9 +68,25 @@ class MainScreen extends StatelessWidget {
                           imageURL: "assets/graphics/icecream.png",
                           dishTitle: "Balu's Cup",
                           dishDescription: "Pistachio ice cream",
-                          rating: 4.5,
+                          rating: 4.0,
                           price: 8.99,
                           noOflikes: 187,
+                        ),
+                        RecommendationCard(
+                          imageURL: "assets/graphics/icecream_cone.png",
+                          dishTitle: "Cooper's Cone",
+                          dishDescription: "Choc coconut ice cream",
+                          rating: 3.0,
+                          price: 6.99,
+                          noOflikes: 150,
+                        ),
+                        RecommendationCard(
+                          imageURL: "assets/graphics/icecream_stick.png",
+                          dishTitle: "Timmy's Classic",
+                          dishDescription: "Classic chocolate vanilla",
+                          rating: 4.0,
+                          price: 6.99,
+                          noOflikes: 170,
                         ),
                       ],
                     ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:p17_jp_app/widgets/start_screen_card.dart';
+import 'package:p17_jp_app/widgets/cards/start_screen_card.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen({super.key});
@@ -14,30 +13,30 @@ class StartScreen extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/backgrounds/bg_mainscreen.png"),
+                image: AssetImage("assets/backgrounds/bg_startscreen.png"),
                 fit: BoxFit.cover,
               ),
             ),
           ),
           Positioned(
-            top: 180,
+            top: 120,
             left: -20,
             child: Image(
               fit: BoxFit.fill,
               image: AssetImage(
                 "assets/graphics/cupcake_chick.png",
               ),
-              width: 600,
+              width: 590,
             ),
           ),
           Positioned(
-              bottom: 34,
+              bottom: 90,
               child: Image(
                 image: AssetImage("assets/details/snack_snack.png"),
                 width: 430,
                 fit: BoxFit.fill,
               )),
-          Positioned(bottom: 50, child: StartScreenCard()),
+          Positioned(bottom: 85, child: StartScreenCard()),
         ],
       ),
     );

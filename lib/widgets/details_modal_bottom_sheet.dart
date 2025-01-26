@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:p17_jp_app/widgets/details_info_card.dart';
-import 'package:p17_jp_app/widgets/details_view_order_now_button.dart';
-import 'package:p17_jp_app/widgets/order_amount_button.dart';
-import 'package:p17_jp_app/widgets/order_now_button.dart';
-import 'package:p17_jp_app/widgets/order_size_segment_button.dart';
+import 'package:p17_jp_app/widgets/cards/details_info_card.dart';
+import 'package:p17_jp_app/widgets/buttons/order_amount_button.dart';
+import 'package:p17_jp_app/widgets/buttons/order_now_button.dart';
+import 'package:p17_jp_app/widgets/buttons/order_size_segment_button.dart';
 
 class DetailsModalBottomSheet extends StatefulWidget {
   final String dishTitle;
@@ -36,64 +35,88 @@ class _DetailsModalBottomSheetState extends State<DetailsModalBottomSheet> {
         color: Color.fromRGBO(44, 44, 44, 1),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Spacer(),
-                    ElevatedButton.icon(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      label: SvgPicture.asset(
-                        "assets/icons/cancel.svg",
-                        height: 15,
-                        width: 15,
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(255, 53, 53, 53),
-                        shape: CircleBorder(
-                          side: BorderSide(
-                              color: const Color.fromARGB(116, 255, 255, 255)),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 150,
-                  child: OverflowBox(
-                    minHeight: 400,
-                    maxHeight: 400,
-                    child: Image(image: AssetImage(widget.imageURL)),
+          child: Stack(
+            children: [
+              Column(
+                children: [
+                  SnackImageContainer(widget: widget),
+                  SnackDetailsInfoCard(
+                      dishTitle: widget.dishTitle,
+                      imageURL: widget.imageURL,
+                      price: widget.price,
+                      noOflikes: widget.noOflikes,
+                      rating: widget.rating),
+                  SizedBox(height: 80),
+                  Row(
+                    children: [
+                      OrderSizeSegmentButton(),
+                      Spacer(),
+                      OrderAmountButton()
+                    ],
                   ),
-                ),
-                DetailsInfoCard(
-                    dishTitle: widget.dishTitle,
-                    imageURL: widget.imageURL,
-                    price: widget.price,
-                    noOflikes: widget.noOflikes,
-                    rating: widget.rating),
-                SizedBox(
-                  height: 50,
-                ),
-                Row(
-                  children: [
-                    OrderSizeSegmentButton(),
-                    Spacer(),
-                    OrderAmountButton()
-                  ],
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                OrderNowButton()
-              ],
-            ),
+                  SizedBox(height: 30),
+                  OrderNowButton(
+                      buttonWidth: double.infinity,
+                      buttonText: "Add to order for 8.99")
+                ],
+              ),
+              ModalBottomSheetCancelButton(),
+            ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class SnackImageContainer extends StatelessWidget {
+  const SnackImageContainer({
+    super.key,
+    required this.widget,
+  });
+
+  final DetailsModalBottomSheet widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 150,
+      child: OverflowBox(
+        minHeight: 400,
+        maxHeight: 400,
+        child: Image(image: AssetImage(widget.imageURL)),
+      ),
+    );
+  }
+}
+
+class ModalBottomSheetCancelButton extends StatelessWidget {
+  const ModalBottomSheetCancelButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Spacer(),
+        ElevatedButton.icon(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          label: SvgPicture.asset(
+            "assets/icons/cancel.svg",
+            height: 15,
+            width: 15,
+          ),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 53, 53, 53),
+            shape: CircleBorder(
+              side: BorderSide(color: const Color.fromARGB(116, 255, 255, 255)),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

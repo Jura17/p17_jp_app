@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:p17_jp_app/screens/main_screen.dart';
 
 class OrderNowButton extends StatelessWidget {
-  const OrderNowButton({super.key});
+  final String buttonText;
+  final double buttonWidth;
+  const OrderNowButton(
+      {super.key, required this.buttonText, required this.buttonWidth});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +15,7 @@ class OrderNowButton extends StatelessWidget {
             .push(MaterialPageRoute(builder: (context) => const MainScreen()));
       },
       child: Container(
-        width: 200,
+        width: buttonWidth,
         height: 50,
         decoration: BoxDecoration(
           boxShadow: [
@@ -47,7 +50,7 @@ class OrderNowButton extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const MainScreen()));
           },
           child: Text(
-            "Order Now",
+            buttonText,
             style: TextStyle(
                 color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
           ),

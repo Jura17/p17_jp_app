@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:p17_jp_app/widgets/add_to_order_button.dart';
+import 'package:p17_jp_app/widgets/buttons/add_to_order_button.dart';
 
 class SelectedSnackCard extends StatelessWidget {
   final String dishTitle;

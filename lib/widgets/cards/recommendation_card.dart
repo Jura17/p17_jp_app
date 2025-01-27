@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:p17_jp_app/widgets/details_modal_bottom_sheet.dart';
+import 'package:p17_jp_app/screens/details_modal_bottom_sheet.dart';
 
 class RecommendationCard extends StatelessWidget {
   final String imageURL;

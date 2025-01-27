@@ -57,7 +57,7 @@ class _DetailsModalBottomSheetState extends State<DetailsModalBottomSheet> {
                   SizedBox(height: 30),
                   OrderNowButton(
                       buttonWidth: double.infinity,
-                      buttonText: "Add to order for 8.99")
+                      buttonText: "Add to order for ${widget.price}")
                 ],
               ),
               ModalBottomSheetCancelButton(),

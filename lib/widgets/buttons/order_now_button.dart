@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:p17_jp_app/screens/main_screen.dart';
 
 class OrderNowButton extends StatelessWidget {
-  final String buttonText;
+  final Widget buttonText;
   final double buttonWidth;
   const OrderNowButton(
       {super.key, required this.buttonText, required this.buttonWidth});
@@ -49,11 +49,7 @@ class OrderNowButton extends StatelessWidget {
             Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => const MainScreen()));
           },
-          child: Text(
-            buttonText,
-            style: TextStyle(
-                color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
-          ),
+          child: buttonText,
         ),
       ),
     );

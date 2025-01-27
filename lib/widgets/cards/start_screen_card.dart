@@ -43,7 +43,13 @@ class StartScreenCard extends StatelessWidget {
                 ),
                 OrderNowButton(
                   buttonWidth: 200,
-                  buttonText: "Order now",
+                  buttonText: Text(
+                    "Order now",
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
                 ),
               ],
             ),

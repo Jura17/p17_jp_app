@@ -56,8 +56,34 @@ class _DetailsModalBottomSheetState extends State<DetailsModalBottomSheet> {
                   ),
                   SizedBox(height: 30),
                   OrderNowButton(
-                      buttonWidth: double.infinity,
-                      buttonText: "Add to order for ${widget.price}")
+                    buttonWidth: double.infinity,
+                    buttonText: Row(
+                      spacing: 6,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          "Add to order for",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                        SvgPicture.asset(
+                          "assets/icons/currency.svg",
+                          width: 15,
+                          colorFilter: const ColorFilter.mode(
+                              Colors.white, BlendMode.srcIn),
+                        ),
+                        Text(
+                          "${widget.price}",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        )
+                      ],
+                    ),
+                  )
                 ],
               ),
               ModalBottomSheetCancelButton(),
